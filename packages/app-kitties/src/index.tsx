@@ -7,6 +7,7 @@
 // `t` is inject into props (see the HOC export) and `t('any text')
 // does the translation
 import { AppProps, I18nProps } from '@polkadot/ui-app/types';
+import getDefaultRegistry from '@polkadot/types/codec/typeRegistry';
 
 // external imports (including those found in the packages/*
 // of this repo)
@@ -17,6 +18,10 @@ import AccountSelector from './AccountSelector';
 import SummaryBar from './SummaryBar';
 import Transfer from './Transfer';
 import translate from './translate';
+
+//
+import * as types from './types';
+getDefaultRegistry().register(types);
 
 // define out internal types
 type Props = AppProps & I18nProps;
@@ -34,9 +39,9 @@ class App extends React.PureComponent<Props, State> {
       // in all apps, the main wrapper is setup to allow the padding
       // and margins inside the application. (Just from a consistent pov)
       <main>
-        <SummaryBar />
+        {/* <SummaryBar /> */}
         <AccountSelector onChange={this.onAccountChange} />
-        <Transfer accountId={accountId} />
+        {/* <Transfer accountId={accountId} /> */}
       </main>
     );
   }
